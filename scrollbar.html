@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 9px;
+    }
+
+    ::-webkit-scrollbar-track-piece {
+      -webkit-border-radius: 0;
+      background: #fff;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #ddd;
+      height: 50px;
+      outline-offset: -2px;
+      outline: 1px solid #fff;
+      -webkit-border-radius: 4px;
+      border: 1px solid #fff;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ccc;
+      height: 50px;
+      -webkit-border-radius: 4px;
+      cursor: move;
+    }
+
+    .abc {
+      height: 1500px;
+      background-color: #40bb80;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .xyz {
+      position: absolute;
+      top: 50px;
+      left: 200px;
+      width: 400px;
+      height: 400px;
+      overflow: auto;
+    }
+
+    .content {
+      height: 1000px;
+      background-color: #822096;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="abc"></div>
+  <div class="xyz">
+    <p class="content"></p>
+  </div>
+</body>
+
+</html>

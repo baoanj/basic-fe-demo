@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      background-color: rgb(51, 43, 69);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+    }
+
+    .sidebar-left {
+      order: 0;
+      width: 200px;
+      border-right: 1px solid rgb(30, 182, 96);
+    }
+
+    .sidebar-right {
+      order: 2;
+      width: 200px;
+      border-left: 1px solid rgb(30, 182, 96);
+    }
+
+    .container {
+      order: 1;
+      flex: 1;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .content {
+      height: 2000px;
+      background-color: rgb(84, 65, 224);
+    }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <p style="height: 60px;"></p>
+      </div>
+      <div class="main">
+        <div class="sidebar-left">
+          sidebar-left
+        </div>
+        <div class="sidebar-right">
+          sidebar-right
+        </div>
+        <div class="container">
+          <div class="content"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

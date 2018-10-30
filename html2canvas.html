@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="capture">
+    <h1>TITLE</h1>
+    <ul>
+      <li>123</li>
+    </ul>
+  </div>
+  <div>
+    <button id="btnSave">生成</button>
+    <button id="btnDown">下载</button>
+  </div>
+  <div id="copyImages">
+    <p>从此处开始复制</p>
+  </div>
+
+  <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    window.onload = function() {
+      const allImgs = [];
+      document.getElementById('btnSave').onclick = (event) => {
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+          const div = document.createElement('div');
+          div.appendChild(convertCanvasToImage(canvas));
+          document.getElementById('copyImages').appendChild(div);
+        });
+      };
+
+      document.getElementById('btnDown').onclick = (event) => {
+        downloadImages(allImgs);
+      };
+
+      function convertCanvasToImage(canvas) {
+        const image = new Image();
+        const url = canvas.toDataURL("image/png");
+        const order = allImgs.length;
+        allImgs.push({
+          name: `发票-${order + 1}.png`,
+          url
+        });
+        image.src = url;
+        return image;
+      }
+
+      function downloadImages(images) {
+        images.forEach(item => {
+          const a = document.createElement('a');
+          a.setAttribute('download', item.name);
+          a.href = item.url;
+          document.body.appendChild(a);
+          a.click();
+        });
+      }
+    };
+  </script>
+</body>
+
+</html>

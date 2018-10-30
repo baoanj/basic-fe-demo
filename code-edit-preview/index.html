@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="前端预览工具是一个在线代码编辑即时预览效果的工具">
+  <meta name="keywords" content="Web 前端, 前端预览工具, HTML CSS JavaScript">
+  <meta name="applicable-device" content="pc,mobile">
+  <title>前端预览工具</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tmy.css">
+</head>
+
+<body class="frontend-preview" data-js="ide/preview">
+  <div class="navbar navbar-inverse navbar-static-top" id="tmy-navbar">
+    <div class="navbar-container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tmy-main-navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <h1><a class="navbar-brand" href="#"><img src="img/logo.png">哈哈哈</a></h1>
+      </div>
+      <div class="navbar-collapse collapse" id="tmy-main-navbar">
+        <ul class="nav navbar-nav">
+          <li><a>前端预览工具</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" class="link" id="reset-link">重置</a></li>
+          <li><a href="/account/login?next=%2Fpreview">保存</a></li>
+          <li><a href="/account/login?next=%2Fpreview">分享</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <input type="hidden" id="front-save-data" data-url="/api/snippets" data-method="post" />
+  <div class="grid-panels">
+    <div class="left-top grid-panel" id="front-html">
+      <i class="fa fa-arrows-alt fullscreen-toggle toggle" data-target="front-html-editor"></i>
+      <div id="front-html-editor">&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello World&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello, world!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+    </div>
+    <div class="right-top grid-panel" id="front-css">
+      <i class="fa fa-arrows-alt fullscreen-toggle toggle" data-target="front-css-editor"></i>
+      <div id="front-css-editor">p {
+  font-style: italic;
+}</div>
+    </div>
+    <div class="left-bottom grid-panel" id="front-javascript">
+      <i class="fa fa-arrows-alt fullscreen-toggle toggle" data-target="front-javascript-editor"></i>
+      <div id="front-javascript-editor">console.log('hello, world!');</div>
+    </div>
+    <div class="right-bottom grid-panel" id="front-preview">
+      <i class="fa fa-arrows-alt fullscreen-toggle toggle" data-target="front-preview-iframe"></i>
+      <i class="fa fa-arrows-h span-horizontal-toggle toggle" data-target="front-preview-iframe"></i>
+      <i class="fa fa-arrows-v span-vertical-toggle toggle" data-target="front-preview-iframe"></i>
+      <iframe id="front-preview-iframe"></iframe>
+    </div>
+  </div>
+
+  <script src="js/tmy.js"></script>
+  <script src="js/ace.js"></script>
+</body>
+
+</html>
