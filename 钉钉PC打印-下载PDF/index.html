@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>钉钉PC打印-下载PDF</title>
+  <style>
+    h1 {
+      font-style: italic;
+    }
+
+    #print {
+      display: inline-block;
+      width: 720px;
+      color: white;
+      background-color: brown;
+      overflow: auto;
+    }
+
+    .loadingBar {
+      position: fixed;
+      display: block;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      z-index: 800;
+      background: #34e79a;
+      animation: loading 1s ease-in-out 0.8s infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        transform: translateX(-100%)
+      }
+
+      40% {
+        transform: translateX(0)
+      }
+
+      60% {
+        transform: translateX(0)
+      }
+
+      100% {
+        transform: translateX(100%)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="print">
+    <h1>hello</h1>
+    <h1>hello</h1>
+    <p>hello</p>
+  </div>
+  <h1>123</h1>
+  <button id="btn">打印</button>
+  <div class="loadingBar"></div>
+  <script src="simple-html2pdf.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
