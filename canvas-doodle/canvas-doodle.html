@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Canvas 涂鸦</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        padding: 20px;
+      }
+
+      canvas {
+        border: 3px solid #000;
+      }
+
+      #nav-tabs {
+        text-align: center;
+      }
+
+      #nav-tabs span {
+        color: cornflowerblue;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav-tabs"></div>
+    <div id="tab-colorful" style="display: none">
+      <canvas id="canvas-colorful" width="800" height="500"></canvas>
+    </div>
+    <div id="tab-line" style="display: none">
+      <canvas id="canvas-line" width="600" height="400"></canvas>
+    </div>
+    <div id="tab-zhihu-feedback" style="display: none"></div>
+    <script>
+      window.onload = () => {
+        const tabs = ['tab-colorful', 'tab-line', 'tab-zhihu-feedback'];
+        let tabStr = '';
+        tabs.forEach((item, index) => {
+          tabStr += `<span nav="${item}">${item.substring(4)}</span>`;
+          if (index !== tabs.length - 1) tabStr += ' | ';
+        });
+        document.querySelector('#nav-tabs').innerHTML = tabStr;
+
+        const data = new Proxy(
+          {},
+          {
+            set(target, key, value) {
+              if (key === 'tab') {
+                const oldValue = target[key];
+                if (!tabs.includes(value)) {
+                  return Reflect.set(target, key, oldValue);
+                }
+                tabs.forEach(item => {
+                  if (item === value) {
+                    document.getElementById(item).style.display = 'block';
+                    document.querySelector(`[nav=${item}]`).style.fontWeight = 'bold';
+                  } else {
+                    document.getElementById(item).style.display = 'none';
+                    document.querySelector(`[nav=${item}]`).style.fontWeight = 'normal';
+                  }
+                });
+              }
+              return Reflect.set(target, key, value);
+            },
+          },
+        );
+        data.tab = tabs[0];
+
+        document.querySelector('#nav-tabs').onclick = e => {
+          data.tab = e.target.getAttribute('nav');
+        };
+      };
+    </script>
+    <script src="colorful.js"></script>
+    <script src="line.js"></script>
+    <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="zhihu-feedback.js"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Zhihu Loading</title>
+    <style>
+      .Comments-pattern-loading {
+        height: 96px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+
+      .BounceLoading {
+        position: relative;
+        width: 60px;
+        height: 18px;
+      }
+
+      .BounceLoading .BounceLoading-child {
+        position: absolute;
+        top: 6px;
+        width: 6px;
+        height: 6px;
+        background-color: #3a76d0;
+        border-radius: 50%;
+        -webkit-transform-origin: center;
+        transform-origin: center;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: Bounce;
+        animation-name: Bounce;
+        -webkit-animation-duration: 0.8s;
+        animation-duration: 0.8s;
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+      }
+
+      @-webkit-keyframes Bounce {
+        0%, to {
+          -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+        }
+        50% {
+          -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+        }
+      }
+      @keyframes Bounce {
+        0%, to {
+          -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+        }
+        50% {
+          -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Comments-pattern-loading">
+      <div class="BounceLoading">
+        <span
+          class="BounceLoading-child"
+          style="left: 0px; animation-delay: 0s;"
+        ></span
+        ><span
+          class="BounceLoading-child"
+          style="left: 18px; animation-delay: -0.1s;"
+        ></span
+        ><span
+          class="BounceLoading-child"
+          style="left: 36px; animation-delay: -0.2s;"
+        ></span
+        ><span
+          class="BounceLoading-child"
+          style="left: 54px; animation-delay: -0.3s;"
+        ></span>
+      </div>
+    </div>
+  </body>
+</html>

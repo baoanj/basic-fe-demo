@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>sticky-and-variables</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        --primary-theme-color: blue;
+      }
+
+      body.night-theme {
+        --primary-theme-color: red;
+      }
+
+      button {
+        margin: 20px 20px 200px;
+      }
+
+      h3 {
+        position: sticky;
+        top: 10px;
+        margin: 20px;
+        z-index: 2;
+        color: var(--primary-theme-color, yellow);
+        transition: all 0.5s;
+      }
+
+      .sticky-example {
+        height: 400px;
+        overflow: auto;
+        border: 5px solid red;
+        margin: 20px;
+      }
+
+      dl {
+        margin: 0;
+        padding: 24px 0 0 0;
+      }
+
+      dt {
+        background-color: var(--primary-theme-color);
+        border-bottom: 1px solid #989ea4;
+        border-top: 1px solid #717d85;
+        color: #fff;
+        font: bold 18px/21px Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 2px 0 0 12px;
+        position: sticky;
+        top: -1px;
+        transition: all 0.5s;
+      }
+
+      dd {
+        font: bold 20px/45px Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0 0 0 12px;
+        white-space: nowrap;
+      }
+
+      dd + dd {
+        border-top: 1px solid #ccc;
+      }
+
+      .sticky-play {
+        height: 400px;
+        width: 400px;
+        border: 5px solid #000;
+        overflow: auto;
+        margin: 20px;
+      }
+
+      h2 {
+        position: sticky;
+        top: 0;
+        width: 800px;
+        padding: 200px;
+        background-color: blueviolet;
+        color: #fff;
+      }
+
+      h2:nth-child(1) {
+        background-color: #717d85
+      }
+
+      h2:nth-child(3) {
+        background-color: blue;
+      }
+
+      h2:nth-child(5) {
+        background-color: teal;
+      }
+
+      h2:nth-child(7) {
+        background-color: brown;
+      }
+
+      span {
+        position: sticky;
+        left: 10px;
+      }
+
+      footer {
+        height: 60px;
+        background-color: #717d85;
+        color: #fff;
+        position: sticky;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="javascript:transition()">transition</button>
+    <h3 class="">positon: sticky</h3>
+    <div style="--primary-theme-color: #b8c1c8;" class="sticky-example">
+      <h1>positon: sticky</h1>
+      <dl>
+        <dt>A</dt>
+        <dd>Andrew W.K.</dd>
+        <dd>Apparat</dd>
+        <dd>Arcade Fire</dd>
+        <dd>At The Drive-In</dd>
+        <dd>Aziz Ansari</dd>
+      </dl>
+      <dl>
+        <dt>C</dt>
+        <dd>Chromeo</dd>
+        <dd>Common</dd>
+        <dd>Converge</dd>
+        <dd>Crystal Castles</dd>
+        <dd>Cursive</dd>
+      </dl>
+      <dl>
+        <dt>E</dt>
+        <dd>Explosions In The Sky</dd>
+      </dl>
+      <dl>
+        <dt>T</dt>
+        <dd>Ted Leo & The Pharmacists</dd>
+        <dd>T-Pain</dd>
+        <dd>Thrice</dd>
+        <dd>TV On The Radio</dd>
+        <dd>Two Gallants</dd>
+        <dd>Tank 1 2 3 4</dd>
+        <dd>Tools abcd</dd>
+        <dd>Tian tian xiang shang!!!</dd>
+        <dd>Twelve apples equal one desk</dd>
+      </dl>
+      <dl>
+        <dt>W</dt>
+        <dd>WWW.BAIDU.COM</dd>
+        <dd>Win the game</dd>
+        <dd>We are the champion</dd>
+        <dd>Weex Vue Vuex</dd>
+        <dd>Woooooooooooo</dd>
+        <dd>Weekend is great!</dd>
+        <dd>Why always is me</dd>
+      </dl>
+    </div>
+    <footer>footer</footer>
+    <div class="sticky-play">
+      <h2><span>NOTE</span>1</h2>
+      <h2>2</h2>
+      <h2>3</h2>
+      <h2>4</h2>
+      <h2>5</h2>
+      <h2>6</h2>
+      <h2>7</h2>
+      <h2>8</h2>
+    </div>
+    <script>
+      function transition() {
+        if (document.body.classList.contains('night-theme')) {
+          document.body.classList.remove('night-theme');
+        } else {
+          document.body.classList.add('night-theme');
+        }
+        const stickyElm = document.getElementsByClassName('sticky-example')[0];
+        if (getComputedStyle(stickyElm).getPropertyValue('--primary-theme-color')
+          .trim() === '#b8c1c8') {
+          stickyElm.style.setProperty('--primary-theme-color', '#717d85')
+        } else {
+          stickyElm.style.setProperty('--primary-theme-color', '#b8c1c8')
+        }
+      }
+    </script>
+  </body>
+</html>
