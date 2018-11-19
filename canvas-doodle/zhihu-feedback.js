@@ -83,14 +83,14 @@
       ctxDraw.lineWidth = 1;
 
       canvasDraw.onmousedown = ev => {
-        const scaleX = canvasDraw.width / canvasDraw.offsetWidth;
-        const scaleY = canvasDraw.height / canvasDraw.offsetHeight;
+        const scaleX = canvasDraw.width / canvasDraw.clientWidth;
+        const scaleY = canvasDraw.height / canvasDraw.clientHeight;
         
         ctxDraw.beginPath();
-        ctxDraw.moveTo(ev.offsetX * scaleX + 2.2, ev.offsetY * scaleY + 1);
+        ctxDraw.moveTo(ev.offsetX * scaleX, ev.offsetY * scaleY);
         let move = false;
         canvasDraw.onmousemove = evt => {
-          ctxDraw.lineTo(evt.offsetX * scaleX + 2.2, evt.offsetY * scaleY + 1);
+          ctxDraw.lineTo(evt.offsetX * scaleX, evt.offsetY * scaleY);
           ctxDraw.stroke();
           if (!move) move = true;
         };
