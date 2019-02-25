@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Image - css filter opacity</title>
+    <style>
+      .toc-link {
+        height: 100%;
+        font-size: 1.3rem;
+        font-family: Space Mono, monospace;
+        font-weight: 400;
+        border: 1px dashed #788080;
+        padding: 20px;
+      }
+
+      .toc-projects {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .toc-projects img {
+        display: block;
+        margin-right: 5px;
+        filter: grayscale(100%) opacity(0.7);
+      }
+
+      .toc-link:hover img {
+        filter: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toc-link">
+      <div class="toc-projects">
+        <img
+          src="https://bestofjs.org/logos/vue.svg"
+          srcset="https://bestofjs.org/logos/vue.svg 2x"
+          width="30"
+          height="30"
+          alt="Vue.js"
+        >
+        <img
+          src="https://bestofjs.org/logos/react.svg"
+          srcset="https://bestofjs.org/logos/react.svg 2x"
+          width="30"
+          height="30"
+          alt="React"
+        >
+        <img
+          src="https://bestofjs.org/logos/vscode.svg"
+          srcset="https://bestofjs.org/logos/vscode.svg 2x"
+          width="30"
+          height="30"
+          alt="VS Code"
+        >
+        <img
+          src="https://avatars.githubusercontent.com/u/42048915?v=3&amp;s=50"
+          srcset="https://avatars.githubusercontent.com/u/42048915?v=3&amp;s=100 2x"
+          width="30"
+          height="30"
+          alt="Deno"
+        >
+        <img
+          src="https://avatars.githubusercontent.com/u/1778935?v=3&amp;s=50"
+          srcset="https://avatars.githubusercontent.com/u/1778935?v=3&amp;s=100 2x"
+          width="30"
+          height="30"
+          alt="Puppeteer"
+        >
+        <img
+          src="https://avatars.githubusercontent.com/u/69631?v=3&amp;s=50"
+          srcset="https://avatars.githubusercontent.com/u/69631?v=3&amp;s=100 2x"
+          width="30"
+          height="30"
+          alt="Create React App"
+        >
+        <img
+          src="https://avatars.githubusercontent.com/u/32372333?v=3&amp;s=50"
+          srcset="https://avatars.githubusercontent.com/u/32372333?v=3&amp;s=100 2x"
+          width="30"
+          height="30"
+          alt="Axios"
+        >
+        <img
+          src="https://avatars.githubusercontent.com/u/12101536?v=3&amp;s=50"
+          srcset="https://avatars.githubusercontent.com/u/12101536?v=3&amp;s=100 2x"
+          width="30"
+          height="30"
+          alt="Ant Design"
+        >
+        <img
+          src="https://bestofjs.org/logos/vueelementadmin.png"
+          srcset="https://bestofjs.org/logos/vueelementadmin.png 2x"
+          width="30"
+          height="30"
+          alt="Vue Element Admin"
+        >
+        <img
+          src="https://avatars.githubusercontent.com/u/22632046?v=3&amp;s=50"
+          srcset="https://avatars.githubusercontent.com/u/22632046?v=3&amp;s=100 2x"
+          width="30"
+          height="30"
+          alt="Storybook"
+        />
+      </div>
+    </div>
+  </body>
+</html>

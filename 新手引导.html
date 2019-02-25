@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>新手引导</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .x-window-mask.modal {
+        position: fixed;
+      }
+      .x-window-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+        -webkit-transition: opacity 0.15s linear;
+        -moz-transition: opacity 0.15s linear;
+        -o-transition: opacity 0.15s linear;
+        transition: opacity 0.15s linear;
+      }
+      .x-msg-dot-guide.zoomIn {
+        -webkit-animation: zoomIn 125ms;
+        -o-animation: zoomIn 125ms;
+        animation: zoomIn 125ms;
+      }
+      .x-msg-dot-guide {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+        z-index: 100;
+      }
+      .x-msg-dot-guide .circle-group {
+        cursor: pointer;
+      }
+      .x-msg-dot-guide .circle-group .circle4 {
+        margin: -10px 0 0 -50px;
+        width: 60px;
+        height: 60px;
+        border: 1px solid #0db3a6;
+        border-radius: 100%;
+        opacity: 0;
+        -webkit-animation: circle4 2s ease-in-out infinite;
+        animation: circle4 2s ease-in-out infinite;
+        transform-origin: center;
+      }
+      .x-msg-dot-guide .circle-group .circle3 {
+        margin: -40px 0 0 -30px;
+        width: 20px;
+        height: 20px;
+        background-color: #0db3a6;
+        border-radius: 100%;
+        opacity: 0.3;
+        -webkit-animation: circle3 2s ease-in-out infinite;
+        animation: circle3 2s ease-in-out infinite;
+      }
+      .x-msg-dot-guide .circle-group .circle2 {
+        margin: -16px 0 0 -26px;
+        width: 12px;
+        height: 12px;
+        background-color: #0db3a6;
+        border: 1px solid #0db3a6;
+        border-radius: 100%;
+        -webkit-animation: circle2 2s ease-in-out infinite;
+        animation: circle2 2s ease-in-out infinite;
+      }
+      .x-msg-dot-guide .circle-group .circle1 {
+        position: relative;
+        margin: -8px 0 0 -22px;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: #fff;
+        -webkit-animation: circle1 2s ease-in-out infinite;
+        animation: circle1 2s ease-in-out infinite;
+      }
+      .x-msg-dot-guide.center .guide-tip {
+        left: -20px;
+        top: 30px;
+        transform: translate(-50%, 0);
+      }
+      .x-msg-dot-guide .guide-tip {
+        position: absolute;
+        top: 30px;
+        left: -10px;
+        width: 340px;
+        height: 150px;
+        cursor: default;
+        font-size: 14px;
+        background: #fff;
+        padding: 25px 20px 25px 25px;
+        line-height: 20px;
+        -webkit-box-shadow: 0 0 6px rgba(51, 51, 51, 0.2);
+        box-shadow: 0 0 6px rgba(51, 51, 51, 0.2);
+      }
+      .x-msg-dot-guide .guide-tip .content {
+        color: #1f2d3d;
+        height: 80px;
+      }
+      .x-msg-dot-guide .guide-tip .title {
+        font-size: 15px;
+        padding-bottom: 5px;
+      }
+      .x-msg-dot-guide .guide-tip .footer .step {
+        color: #1f2d3d;
+      }
+      .x-msg-dot-guide .guide-tip .footer .tip-close {
+        cursor: pointer;
+        margin-left: 18px;
+        color: #91a1b7;
+      }
+      .x-msg-dot-guide .guide-tip .footer .tip-end,
+      .x-msg-dot-guide .guide-tip .footer .tip-next {
+        padding-right: 4px;
+        float: right;
+        cursor: pointer;
+        color: #0db3a6;
+        text-align: right;
+      }
+      .x-msg-dot-guide .triangle-up {
+        position: absolute;
+        top: 20px;
+        left: 24px;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        transform: rotate(135deg);
+        -webkit-box-shadow: -2px 2px 3px rgba(51, 51, 51, 0.1);
+        box-shadow: -2px 2px 3px rgba(51, 51, 51, 0.1);
+      }
+      @keyframes circle1 {
+        0%,
+        100% {
+          background-color: #aac7ff;
+        }
+        50% {
+          background-color: #fff;
+        }
+      }
+      @-webkit-keyframes circle1 {
+        0%,
+        100% {
+          background-color: #aac7ff;
+        }
+        50% {
+          background-color: #fff;
+        }
+      }
+      @keyframes circle2 {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      @-webkit-keyframes circle2 {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      @keyframes circle3 {
+        0%,
+        100% {
+          -webkit-transform: scale(1.3);
+          -moz-transform: scale(1.3);
+          -ms-transform: scale(1.3);
+          -o-transform: scale(1.3);
+          transform: scale(1.3);
+          opacity: 0;
+        }
+        50% {
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1);
+          -ms-transform: scale(1);
+          -o-transform: scale(1);
+          transform: scale(1);
+          opacity: 0.3;
+        }
+      }
+      @-webkit-keyframes circle3 {
+        0%,
+        100% {
+          -webkit-transform: scale(1.3);
+          -moz-transform: scale(1.3);
+          -ms-transform: scale(1.3);
+          -o-transform: scale(1.3);
+          transform: scale(1.3);
+          opacity: 0;
+        }
+        50% {
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1);
+          -ms-transform: scale(1);
+          -o-transform: scale(1);
+          transform: scale(1);
+          opacity: 0.3;
+        }
+      }
+      @keyframes circle4 {
+        0%,
+        100% {
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1);
+          -ms-transform: scale(1);
+          -o-transform: scale(1);
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          -webkit-transform: scale(0);
+          -moz-transform: scale(0);
+          -ms-transform: scale(0);
+          -o-transform: scale(0);
+          transform: scale(0);
+          opacity: 0.6;
+        }
+      }
+      @-webkit-keyframes circle4 {
+        0%,
+        100% {
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1);
+          -ms-transform: scale(1);
+          -o-transform: scale(1);
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          -webkit-transform: scale(0);
+          -moz-transform: scale(0);
+          -ms-transform: scale(0);
+          -o-transform: scale(0);
+          transform: scale(0);
+          opacity: 0.6;
+        }
+      }
+      @keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale3d(0.3, 0.3, 0.3);
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      @-webkit-keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale3d(0.3, 0.3, 0.3);
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="x-window-mask modal"
+      style="z-index: 8012; background-color: rgba(240, 240, 240, 0.25);"
+    ></div>
+    <div
+      class="x-msg-dot-guide center zoomIn"
+      style="left: 1061px; top: 22px; z-index: 8013;"
+    >
+      <div class="circle-group">
+        <div class="circle4"></div>
+        <div class="circle3"></div>
+        <div class="circle2"></div>
+        <div class="circle1"></div>
+      </div>
+      <div class="guide-tip">
+        <div class="content">
+          <div class="title"></div>
+          <div class="msg">
+            做好的应用可快速访问和使用。点击此处进入应用访问
+          </div>
+        </div>
+        <div class="footer">
+          <span class="step">3/6</span><span class="tip-close">关闭引导</span
+          ><span class="tip-next">下一步</span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="x-msg-dot-guide bottom zoomIn"
+      style="left: 200px; top: 210px; z-index: 8013;"
+    >
+      <div class="guide-tip">
+        <div class="content">
+          <div class="title"></div>
+          <div class="msg">
+            应用由表单、流程表单和报表等组成。创建的表单和报表展示在左侧列表中
+          </div>
+        </div>
+        <div class="footer">
+          <span class="step">2/6</span><span class="tip-close">关闭引导</span
+          ><span class="tip-next">下一步</span>
+        </div>
+      </div>
+      <div class="triangle-up"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>流程图</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        padding: 20px;
+      }
+
+      #workflow-view div {
+        transition: width ease, height ease, top ease, left ease;
+      }
+
+      #workflow-view .workspace {
+        height: 100%;
+        position: relative;
+        width: 100%;
+        background-color: #fbfbfb;
+      }
+
+      #workflow-view .workspace_svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      #workflow-view .activity_instance {
+        position: absolute;
+        resize: none;
+        min-width: 122px;
+        cursor: pointer;
+        padding: 10px;
+        background-color: #fff;
+        text-align: center;
+        border: 1px solid #37abfd;
+        border-radius: 3px;
+        padding-left: 15px;
+        padding-right: 0;
+      }
+
+      #workflow-view .activity_instance .activity_content {
+        max-width: 100%;
+        display: inline-block;
+        padding-left: 15px;
+        margin-left: -25px;
+        padding-right: 2px;
+      }
+
+      #workflow-view .activity_content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-v-0f30bc9a="" id="workflow-view" class="panel-body">
+      <div class="content" style="display: block;">
+        <div>
+          <div class="workspace" style="width: 684px; height: 308px;">
+            <svg
+              class="workspace_svg"
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              style="width: 100%; height: 100%;"
+            >
+              <path
+                fill="white"
+                fill-opacity="0"
+                stroke="rgb(75, 155, 237)"
+                stroke-width="1"
+                d="M146,200 L146,139 a3,3,0,0,1,3,-3 L269,136"
+              ></path>
+              <polygon
+                fill-opacity="1"
+                fill="rgb(75, 155, 237)"
+                stroke="rgb(75, 155, 237)"
+                stroke-width="1"
+                points="277,136 269,132 269,140"
+              ></polygon>
+              <path
+                fill="white"
+                fill-opacity="0"
+                stroke="rgb(75, 155, 237)"
+                stroke-width="1"
+                stroke-dasharray="3"
+                d="M399,136,L561,136,a3,3,0,0,1,3,3,L564,228"
+              ></path>
+              <polygon
+                fill-opacity="1"
+                fill="rgb(75, 155, 237)"
+                stroke="rgb(75, 155, 237)"
+                stroke-width="1"
+                points="564,236,560,228,568,228"
+              ></polygon>
+              <path
+                fill="white"
+                fill-opacity="0"
+                stroke="rgb(75, 155, 237)"
+                stroke-width="1"
+                d="M 593 278 L 593 295 a 3 3 0 0 1 -3 3 L 496 298 a 3 3 0 0 1 -3 -3 L 493 260 a 3 3 0 0 0 -3 -3 L 402 257"
+              ></path>
+              <polygon
+                fill-opacity="1"
+                fill="rgb(75, 155, 237)"
+                stroke="rgb(75, 155, 237)"
+                stroke-width="1"
+                points="394 257 402 253 402 261"
+              ></polygon>
+            </svg>
+            <div
+              class="ActivityStart activity_instance"
+              style="left: 85px; top: 200px; height: 42px; width: 122px;"
+            >
+              <div class="activity_content">
+                <div>开始</div>
+              </div>
+            </div>
+            <div
+              class="ActivityEnd activity_instance"
+              style="left: 272px; top: 236px; height: 42px; width: 122px;"
+            >
+              <div class="activity_content">
+                <div>结束</div>
+              </div>
+            </div>
+            <div
+              class="activity_instance ActivityWorking"
+              style="left: 277px; top: 115px; height: 42px; width: 122px;"
+            >
+              <div class="activity_content">
+                <div>经办节点</div>
+              </div>
+            </div>
+            <div
+              class="activity_instance"
+              style="left: 532px; top: 236px; height: 42px; width: 122px;"
+            >
+              <div class="activity_content">
+                <div>审批节点</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 20px; background-color: #fbfbfb;">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="450">
+      <path id="lineAB" d="M 100 350 l 150 -300" stroke="red" stroke-width="3" fill="none" />
+        <path id="lineBC" d="M 250 50 l 150 300" stroke="red" stroke-width="3" fill="none" />
+        <path d="M 175 200 l 150 0" stroke="green" stroke-width="3" fill="none" />
+        <path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />
+        <!-- Mark relevant points -->
+        <g stroke="black" stroke-width="3" fill="black">
+          <circle id="pointA" cx="100" cy="350" r="3" />
+          <circle id="pointB" cx="250" cy="50" r="3" />
+          <circle id="pointC" cx="400" cy="350" r="3" />
+        </g>
+        <!-- Label the points -->
+        <g font-size="30" font="sans-serif" fill="black" stroke="none" text-anchor="middle">
+          <text x="100" y="350" dx="-30">A</text>
+          <text x="250" y="50" dy="-10">B</text>
+          <text x="400" y="350" dx="30">C</text>
+        </g>
+      </svg>
+    </div>
+    <div style="margin-top: 20px; background-color: #fbfbfb;">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="300" width="600">
+        <polyline points="0,10 100,10 100,50 200,50 200,10 300,10 400,60 450 160 500,200" style="fill:none;stroke:#37abfd;stroke-width:4" />
+      </svg>
+    </div>
+    <div style="margin-top: 20px; background-color: #fbfbfb;">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" height="300" width="666">
+        <defs>
+          <path id="path1" d="M 20 120 c 100 -100 200 100 300 0 c 100 -100 200 100 300 0" />
+        </defs>
+        <text style="fill:red;">
+          <textPath xlink:href="#path1">因此可以在原生数据结构的基础上定义自己的数据结构下面就是定义了一个带版本功能的数组</textPath>
+        </text>
+      </svg>
+    </div>
+    <div style="margin-top: 20px; background-color: #fbfbfb;">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" height="300" width="666">
+        <path
+          fill="white"
+          fill-opacity="0"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1"
+          d="M 20 120 c 100 -100 200 100 300 0 c 100 -100 200 100 300 0"
+        />
+        <path
+          fill="white"
+          fill-opacity="0"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1" d="M 20 120 L 620 120"
+        />
+      </svg>
+    </div>
+    <div style="margin-top: 20px; background-color: #fbfbfb;">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" height="300" width="666">
+        <defs>
+          <marker id="markerArrow" markerWidth="13" markerHeight="13" refx="2" refy="6" orient="auto-start-reverse">
+            <path d="M2,2 L2,11 L10,6 L2,2" fill="rgb(75, 155, 237)" />
+          </marker>
+          <!-- arrowhead marker definition -->
+          <marker id="myArrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="10" markerHeight="10"
+            orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="rgb(75, 155, 237)" />
+          </marker>
+          <!-- simple dot marker definition -->
+          <marker id="myDot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="10" markerHeight="10">
+            <circle cx="5" cy="5" r="5" fill="rgb(75, 155, 237)" />
+          </marker>
+        </defs>
+        <path
+          fill="white"
+          fill-opacity="0"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1"
+          marker-end="url(#markerArrow)"
+          d="M 20 50 c 100 -100 200 100 300 0"
+        />
+        <line
+          x1="50" y1="50" x2="100" y2="200"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1"
+          marker-end="url(#markerArrow)"
+        ></line>
+        <line
+          x1="200" y1="100" x2="300" y2="100"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1"
+          marker-end="url(#markerArrow)"
+        ></line>
+        <line
+          x1="150" y1="150" x2="300" y2="250"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1"
+          marker-end="url(#markerArrow)"
+        ></line>
+        <line
+          x1="400" y1="250" x2="660" y2="50"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1"
+          marker-end="url(#markerArrow)"
+        ></line>
+        <line
+          x1="600" y1="250" x2="360" y2="50"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1"
+          marker-start="url(#markerArrow)"
+          marker-end="url(#markerArrow)"
+        ></line>
+        <line
+          x1="650" y1="100" x2="500" y2="250"
+          stroke="rgb(75, 155, 237)"
+          stroke-width="1"
+          marker-start="url(#myDot)"
+          marker-end="url(#myArrow)"
+        ></line>
+      </svg>
+    </div>
+    <div>
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- arrowhead marker definition -->
+          <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" />
+          </marker>
+    
+          <!-- simple dot marker definition -->
+          <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5">
+            <circle cx="5" cy="5" r="5" fill="red" />
+          </marker>
+        </defs>
+    
+        <!-- Coordinate axes with a arrowhead in both direction -->
+        <polyline points="10,10 10,90 90,90" fill="none" stroke="black" marker-start="url(#arrow)"
+          marker-end="url(#arrow)" />
+    
+        <!-- Data line with polymarkers -->
+        <polyline points="15,80 29,50 43,60 57,30 71,40 85,15" fill="none" stroke="grey" marker-start="url(#dot)"
+          marker-mid="url(#dot)" marker-end="url(#dot)" />
+      </svg>
+    </div>
+    <script>
+      const data = {
+        Activities: [
+          {
+            ActivityCode: 'Activity1',
+            DisplayName: '开始',
+            X: 146,
+            Y: 221,
+            Height: 42,
+            Width: 122
+          },
+          {
+            ActivityCode: 'Activity4',
+            DisplayName: '结束',
+            X: 333,
+            Y: 257,
+            Height: 42,
+            Width: 122
+          },
+          {
+            ActivityCode: 'Activity6',
+            DisplayName: '经办节点',
+            X: 338,
+            Y: 136,
+            Height: 42,
+            Width: 122
+          },
+          {
+            ActivityCode: 'Activity7',
+            DisplayName: '审批节点',
+            X: 593,
+            Y: 257,
+            Height: 42,
+            Width: 122
+          }
+        ],
+        Rules: [
+          {
+            PreActivityCode: 'Activity1',
+            Points: [
+              '146,200',
+              '146,136',
+              '277,136'
+            ],
+            PostActivityCode: 'Activity6'
+          },
+          {
+            PreActivityCode: 'Activity6',
+            Points: [
+              '399,136',
+              '564,136',
+              '564,236'
+            ],
+            PostActivityCode: 'Activity7'
+          },
+          {
+            PreActivityCode: 'Activity7',
+            Points: [
+              '593,278',
+              '593,298',
+              '493.5,298',
+              '493.5,257',
+              '394,257'
+            ],
+            PostActivityCode: 'Activity4'
+          }
+        ],
+        EndActivityCode: 'Activity4',
+        StartActivityCode: 'Activity1',
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Custom Elements</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    #element-details-template {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <num-counter></num-counter>
+  <div id="element-details-template">element-details-template</div>
+  <element-details></element-details>
+  <p is="word-count"></p>
+  <script>
+    class Counter extends HTMLElement {
+      constructor() {
+        super();
+        this.onclick = this.clicked.bind(this);
+        this.x = 0;
+      }
+
+      clicked() {
+        this.x++;
+        window.requestAnimationFrame(this.render.bind(this));
+      }
+
+      connectedCallback() {
+        this.render();
+      }
+
+      render() {
+        this.innerText = this.x.toString();
+      }
+    }
+    window.customElements.define('num-counter', Counter);
+
+    customElements.define(
+      'element-details',
+      class extends HTMLElement {
+        constructor() {
+          super();
+          const style = document.createElement('style');
+          style.textContent = `
+            div {
+              color: blue;
+            }
+          `;
+          const template = document.getElementById('element-details-template');
+          const shadowRoot = this.attachShadow({ mode: 'open' });
+          shadowRoot.appendChild(style);
+          shadowRoot.appendChild(template.cloneNode(true));
+        }
+      },
+    );
+
+    // Create a class for the element
+    class WordCount extends HTMLParagraphElement {
+      constructor() {
+        // Always call super first in constructor
+        super();
+
+        // count words in element's parent element
+        const wcParent = this.parentNode;
+
+        function countWords(node) {
+          const text = node.innerText || node.textContent;
+          return text.split(/\s+/g).length;
+        }
+
+        const count = `Words: ${countWords(wcParent)}`;
+
+        // Create a shadow root
+        const shadow = this.attachShadow({ mode: 'open' });
+
+        // Create text node and add word count to it
+        const text = document.createElement('span');
+        text.textContent = count;
+
+        // Append it to the shadow root
+        shadow.appendChild(text);
+      }
+    }
+
+    // Define the new element
+    customElements.define('word-count', WordCount, { extends: 'p' });
+  </script>
+</body>
+</html>

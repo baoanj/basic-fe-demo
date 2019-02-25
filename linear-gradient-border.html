@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>linear-gradient-border</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      header {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        margin: 50px auto;
+      }
+
+      header::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        bottom: -10px;
+        left: -10px;
+        background-image: linear-gradient(to right bottom, #ff8a00, #da1b60, #578eef);
+        z-index: -1;
+      }
+
+      nav {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        background-color: #fff;
+      }
+
+      div {
+        width: 500px;
+        height: 50px;
+        margin: 50px auto;
+        position: relative;
+        border-radius: 30px;
+        background-image: linear-gradient(to right, #ff8a00, #da1b60, #578eef);
+      }
+
+      input {
+        position: absolute;
+        display: block;
+        width: calc(100% - 4px);
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+        border: none;
+        border-radius: 30px;
+        padding: 10px;
+        font-size: 20px;
+        background-color: #fff;
+        outline: none;
+      }
+
+      article {
+        width: 300px;
+        height: 200px;
+        margin: 50px auto;
+        position: relative;
+        animation: borderGradient 0.5s linear infinite;
+      }
+
+      section {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+        background-color: #fff;
+      }
+
+      @keyframes borderGradient {
+        0% {
+          background-image: linear-gradient(to right top, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+        12% {
+          background-image: linear-gradient(to right, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+        25% {
+          background-image: linear-gradient(to right bottom, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+        37% {
+          background-image: linear-gradient(to bottom, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+        50% {
+          background-image: linear-gradient(to left bottom, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+        63% {
+          background-image: linear-gradient(to left, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+        75% {
+          background-image: linear-gradient(to left top, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+        88% {
+          background-image: linear-gradient(to top, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+        100% {
+          background-image: linear-gradient(to right top, #ff8a00, #da1b60, #578eef, #68d230);
+        }
+      }
+
+      footer {
+        width: 100px;
+        height: 100px;
+        margin: 50px auto;
+        border-radius: 50%;
+        position: relative;
+        background-image: linear-gradient(to right, #ff8a00, #da1b60, #578eef);
+        animation: borderRotate 1s linear infinite;
+      }
+
+      p {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+        border-radius: 50%;
+        background-color: #fff;
+        animation: contentRotate 1s linear infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @keyframes borderRotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+      @keyframes contentRotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(-1turn);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div><input type="text"></div>
+    <article><section>hello</section></article>
+    <header><nav>Header</nav></header>
+    <footer><p>world</p></footer>
+  </body>
+</html>

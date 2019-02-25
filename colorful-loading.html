@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>colorful loading</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+/*******************************************************************************
+外环的转动会带动中环和内环的转动，所以有：
+外环：2s/圈             => 1s 可以转 1/2 圈
+中环：2s/圈 + 3s/圈     => 1s 可以转 1/2+1/3=5/6 圈
+内环：2s/圈 + 1.5s/圈   => 1s 可以转 1/2+2/3=7/6 圈
+综上可得：
+以 6s 为一个周期，外环转 3 圈，中环转 5 圈，内环转 7 圈
+*******************************************************************************/
+
+    .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border: 3px solid transparent;
+      border-top-color: #1da7da;
+      border-radius: 50%;
+      animation: spin 2s linear infinite;
+    }
+
+    .loading::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 3px solid transparent;
+      border-top-color: #ff6860;
+      border-radius: 50%;
+      animation: spin 3s linear infinite;
+    }
+
+    .loading::after {
+      content: "";
+      position: absolute;
+      top: 23px;
+      left: 23px;
+      right: 23px;
+      bottom: 23px;
+      border: 3px solid transparent;
+      border-top-color: #f3ac00;
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+
+    .avatar {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 70px;
+      height: 70px;
+      transform: translate(-50%,-50%);
+      background-color: #ededed;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .avatar::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30%;
+      height: 30%;
+      transform: translate(-50%,-50%);
+      background-color: #bababa;
+      border-radius: 50%;
+    }
+
+    .avatar::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -8%;
+      width: 65%;
+      height: 35%;
+      transform: translateX(-50%);
+      background-color: #bababa;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="loading"></div>
+  <div class="avatar"></div>
+</body>
+</html>

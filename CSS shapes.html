@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS shapes</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .box {
+        width: 300px;
+        margin: 10px auto;
+        font-size: 12px;
+      }
+
+      .text {
+        margin-bottom: 20px;
+      }
+
+      .shape {
+        float: left;
+        width: 80px;
+        height: 80px;
+        padding: 10px;
+        margin: 10px;
+        border: 10px solid #06bc8a;
+        border-radius: 50%;
+        background-color: currentColor;
+        background-clip: content-box;
+        color: #cd0000;
+      }
+
+      .test1 {
+        shape-outside: none;
+      }
+
+      .test2 {
+        shape-outside: margin-box;
+      }
+
+      .test3 {
+        shape-outside: border-box;
+      }
+
+      .test4 {
+        shape-outside: padding-box;
+      }
+
+      .test5 {
+        shape-outside: content-box;
+      }
+
+      .shape1 {
+        float: left;
+        width: 90px;
+        height: 90px;
+        background-color: currentColor;
+        color: #cd0000;
+      }
+
+      .test6 {
+        clip-path: circle();
+        shape-outside: circle();
+      }
+
+      .test7 {
+        clip-path: circle(50% at 0% 50%);
+        shape-outside: circle(50% at 0% 50%);
+      }
+
+      .test8 {
+        clip-path: ellipse(40px 55px at 50% 50%);
+        shape-outside: ellipse(40px 55px at 50% 50%);
+      }
+
+      .test9 {
+        clip-path: ellipse(farthest-side at 25% 40%);
+        shape-outside: ellipse(farthest-side at 25% 40%);
+      }
+
+      .test10 {
+        clip-path: ellipse(closest-side farthest-side at 40% 25%);
+        shape-outside: ellipse(closest-side farthest-side at 40% 25%);
+      }
+
+      .test11 {
+        clip-path: inset(10px 20px);
+        shape-outside: inset(10px 20px);
+      }
+
+      .test12 {
+        clip-path: inset(10px 20px 30px 10px round 25px);
+        shape-outside: inset(10px 20px 30px 10px round 25px);
+      }
+
+      .test13 {
+        clip-path: polygon(0px 0px, 0px 40px, 40px 80px);
+        shape-outside: polygon(0px 0px, 0px 40px, 40px 80px);
+      }
+
+      .test14 {
+        clip-path: polygon(0px 0px, 80px 0px, 0px 40px, 80px 80px, 0px 80px);
+        shape-outside: polygon(0px 0px, 80px 0px, 0px 40px, 80px 80px, 0px 80px);
+      }
+
+      .shape2 {
+        float: left;
+        width: 200px;
+        height: 300px;
+        background-color: currentColor;
+        -webkit-mask: url(./birds.png) no-repeat;
+        mask: url(./birds.png) no-repeat;
+        color: #cd0000;
+      }
+
+      .shape3 {
+        float: left;
+        width: 200px;
+        height: 300px;
+        background-color: currentColor;
+        background: url(./birds.png) no-repeat;
+        color: #cd0000;
+      }
+
+      .test15 {
+        shape-outside: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALUAAAEpCAYAAADVgGMlAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAD6hJREFUeNrsnQmwVmUZxx8IUlEQFxTFJdAGI0QJFMhwV6RUSMLU3GjSES1JMwdFnUxtMXcLUwuBccclUEQ0lXEJcRJnUInUcEERBQRZFRB6Hs4HXi98l/t933mXc87vN/OfcRjvud/5n//33ve8y/M2EYDKaabqruqp6qJqr+qgaqlqpVqjWqRaqJqjmq6aoXpZNUW1HAshBpqr+qtGqz4pBbcaWaAnqE5XbYWtEIK2qstVs2sIcjktVo1QdcZm8MH2qmtUyxyEub6+UD2o2gfbwQVNVD9VzfcQ5vpapbpZ1ZrHAGlhL3zPBghzfdnL5TE8DqiVgaoFEQR6nVarblRtxqOBSvma6vqIwlxfL5ZeVgEaRQvVPyIO9Dq9o9qLxwWbYltJJkLWZEQfqjry2KAcbVSvZCjQ6/S+ak8eH9Rna0mmq9dkVG8KQ35Qh6+rnspwoNfpn6UX3LJvvlAMbFJllKpfDu6lQ+l+nuGxFptLc9BC19VKVQ8ea3HpI8n6ijU5ky1pbUb3o3i0U02UfC7ztFGcuaqXeMzFwRqt53LYQtfV3PpfWFrqfHOhJCvu8ozNis6htS4G31Z9lvNWuu7YdVNa6nxjL0/jVLsX5H5tyv8F1UxCnV/OUw0q2D0vUY3n0ecTW6b5aUG6HXU1k0efX0YWMNDrtCOPP39YHY7VBQ71oVL3jRFywdWSrIkoKm0Idb44StW74B5sQ6jzg7XOV2FD8leKUOeDAarvYMPaWiWQk9ZpWoFfDuuqG3HIB8cQ5rWyyZfN6H7kg4uxYC22Te1zbMg+PWmh12t9mTJa6uxim2ivxIb1tFj3Hyxoyib23O5WHY0V67Gi8PdiQ3ZHO0bR3dhAtna8NS11Nhmu+hk2bICtIbeNuNMIdbawMgcXYkNZlqoexobsMJguRqOKtTehpc4Gx5b60YxWNYztKn+IUMePVSF6RKio31imEuq42UU1SajyWQnvE+p4sZK7NvXbASsq4lNCHSf2XB5SHYAVFbOcUMfJTaqTsKEqVhHq+DhDdQU2VP9XjlDHhe0xvFeY6a2F5pgXD7uVXgxbYUVNLCLUcdBCGOlIi/cIdRyMVB2ODakwmVCH51xhkVKaPNgED4Ji49BPS7KLBdKhD6EOh1UntUM6d8aK1LBqrzuw6isMtqD9PgKdOjYLuwIbwnCdFHfNsx1997aD61q1132IVhgGSrEX8j8pyT7LXpLMnE5WLW/g/3+t9CI9axPXvY9ohaGTanHBQ33ORnyxUbiOqkNUx5W++Da7WreI+tAGrrlItSvx8o/NFM4Qtlx1r9K/vRq45qnEKwxjCPRa1bIMYP5Grncz0QrD2YR5rZbW6OPkete7X1j8FYSum3gRKpJm1ejlhDrXGl0u0IxTu8V2N9+j2hwr1rKgxp+3MK9SXaI6rTQ8uAHN8Nkpfy291UPC6hp/flFphOR5rAzDILobG+i5Gj1t1BoZuh9u+Jbqz9iQOisIdRhalN7KW2BFGAh1+lyv6owNhDovnKg6ExvKsiWhzhYdSqMdUJ5mhDo72CTAncJOcLofOWKYJEspAXKBldpdKYxBN0bTaKnjp6XqLmFmlj51jrBCjntgA6MfeeFHqtOxgRfFvNBOdSs2VMwaQh0n6w7n3BYrKmYRoY6T81SHYQPdj7xgazp+hw1Vs5JQx4UNR40Ujn6rhWWEOi6s7kQ3bKiJpYQ6HvaW5FxwqI1PCXUcNJdktINyu7WzkFDHwUWSlDmA2plPqMOzryQr8CAd5hDqsFh34w66HanyPqEOy7BSSw3pMcvHL+F4jPLdjpdKL4mQHm1U82ip/WNbs24n0Kkzz0egCfXGGSLV11CG8szw2SrBl3xDkjrSvBymz2Oq8bTU/rlFPO3OKCBTsMA/A4SNsS7lrforox8JVkd6unAYjivml0Y+2PnikUsJtFMm+go0JNifxRV0D5zqJJ8PlNEPkRGSnG8IbrAjLOwgp2VY4YfDaEWd63HfD7XILbW9JD+g2onvtlMuk+QoZvDAD2lFnct2umxBS+2vlb5Xvnr2NaSP1et+FBv8cAStqHNZOYTdQjzcoo5Tn8X32jn2vvJeqD/DRaOtJIvVKb/rDjsEtIvqdVpqPwwk0M65J1Sgi/qieF2ovl5B+FySxWELQ32AorXUu6i+S+6cYudIvh3yAxStpbY1CEeTO2d8oPqxNPK4ZVrqdOhD7pxyoWoJNvjDtmgtFsaPc7PGg5Za5ABJNgNA+lg108GE2j8/IHvOuDT0y2FRmUYXwYkmxdY4FmVG0cal3+V7nTr2jmIzh+/E9KGK0v1g1MMN58YW6CKF+mDylzo2FT4yxg9WlO6HlZBtRw5T401JSrMtivHDFaGl3oNAp4rNFp4Qa6CLEuoDyWGqnKOaGvMHLEKoDyKHqfF31d+wITwzhbHkNGRF6KkGGwG7EsZUZKvvdsnKQ89794P+dO1YZaXjxNMhRISa/rRrrJUeJNSWjorX6TrUpKFEKC62lqQ4IeGsTsOJUHxQsKZ6jZUMb/XLc5+6F9/rqnhakhnDLwh1fPQknxVjL4T9VcuxIj5sodZ8uhEVyTZRbEt04qUjIa1IdohTbirA5rX7QX+68dhJtIeqPiLU9KfzEuhDVHPydFN5DfV+5HWTvJrHQOeVFpIU/KavXF5T8vxSmMeWuqtQqrchJqkOV31CqLNDN3JbljGqvpKUNhBCTaizzo2SzBR+hhXZYzp95q9olepXxCK7bFV6iIQ5ke34ph53xulNkNfrf6rORQxB3vrU3fler8UO5NxfCnp8ct5CXfSXRDtE6HzVsZIs6IIcMKPA3Y23+EuVP1pKcbdv2TnrrYhA/jhQ2EsIkq8j5/pJMltWNOw9wtZCv1DqU0OOGCFUURpADPLFVGFs2jROknJrkHGal/70EupEtmBpiBTz7PncnCSwr+oVvtsb8G/VA6rWpWdtX/zZkqyPeVmSOnkQKafTOlesZaXA9yA+cXJDDkI2WXWJap7n37tadZtqc2IUF5MyPmoxsM692CTSL1VveP4cTwpF1aN6L1go+ZsJtPs6sDRUucDT5/kjcYqD9hkMs5X1OrOCe7QW1M5WHynJ3kJXn8t2xexEpMJzbMYC/U5ptKYaLNzPVfC7qlkLM4xIhWdYhgI9tYaW0Lojd27i+tZNuUaSE35b1fkiWB2UyyWp8bGpz/g0kQrPvRkJ9POSFIKvlosauLatnT6v9JLZELbd7drSiEe5a31MpMKThSMwnlVtWcM99msgiE+odqjwerarfFUDXRYIyGYSfzWmKTW20HtLMu1dbvSk2sI9gxr4zBCQfSMPtB1M36aG+7OfLXe46QtS+7jy3XQ/4uOUiANt4dizxvt7pIEhwY4p+Gcvrcs28mWBgFwdaaBt4VCtB5P2beD6V6Xo4fB6176WWIXl8UhDPTiFe7u/gS9MmhMkPepd/whiFZZ3Iwz0rSnd25tlrj8mZQ+bypfn48wWKsYGpaXEObmyWUr3V64m4CkOvJxYuvbFxCosPSS+3SYdU7y/22Xjy0S3c+DlLapZkhSszzxZrtDUKbLPc7bqvylez0rvrqz3b2+Im8pLds1Bwk6Y4Pwpolb6bkf3eEG93zPS0e9pQ5ziYLzEs8jf5fkpl8mXU+TUmWbkw4t81H/uo3pP9X0ee37ZMZJA3+HxnreW2taQQOQcE0GgbUx3Gx4Fox9pEcPhn1YHegERgrR4MXAr/RiPANJkewlbh3qpqgOPge5HmhwZ+HP/QZI1zgCpcXfAVtqGEalkBKlii4U+DRjq43kEkDb9Jezm2SY8AshL18NeTDn5ClJnCym/q9q1RmA/uOCEQIG2873bYj+4YEKgUA/FenBBOylfUcilbGUcQ3gZIyuTLydLmEN5bC3zZ8QEXDA9QCs9TbK93Q0ipnegvjQL8sEZIcamn8V2cIVtCA1x6GcvrAdXDA0Q6LHYDi5HZmaK/+nwzlgPrugboJUeje3gknHiv/xue2wHV+wm/mcQb8Z2cMmVngO9RJJaIgBOsHNMZnsO9ZXYDi453nOg5wqVj8Axkz2HegiWg0t6eg60HUHRHNvBJfd5DnV/LAeX2DCez9NrJ2A5uMbnyQC28P+bWA4u2UqSCqK+Qv17LAfX/MJjoD9UtcJycElTKX8QpgudhuXgmn4eAz1FKB0GHnjGU6DthKue2A2u6eqxlR6J3eCDUZ4CbTX4dsZucI3PyRZKh4EXfE22vCVJsXYAp7SWpJoo6zsgN1zgKdATsRp8YDtbPvAQaOuvd8Ju8MGpnlrpG7EafGCzea96CPTHpX47gHP6eGqlB2M1+OIpD4F+RcIUaIcC4mtK/CCsBl/42H94PzaDLzqI+ynxZZJMvQN44SYPrfRvsRl8sX2pFXUZ6HdVLbAafPEbD630idgMvrDzxOeK+0OH2KIF3nC9S9yOs+iKzeCLZuL+zJbbsRl84rokrxW/aYPN4JOXHYf6fCwGnxzsOND/EUrwgmcecRzqo7AYfGK7TVY7DPSjWAy+uU0owQs5YqdS8FyF+hosBt9cIZTghRxhhdNdTolTghe8c5bDQNsxdKzvAK9Y4F4Xd+s7umMx+MblLvHh2AshcDXZMk+1HfaCb3ZVrRLqd0COuFyo3wE5wtZMvy9uzmfpjb0QguMctdJ3YS2E4glxcz5LO6yFEOwpblbjcT4LBMNFgZo3hPNZIBC2zsPFmS1HYi2EwkXpg4exFUJh6zzeTDnQy1XtsRZC4WKdB8UdISjjUw60FbyhuCMEw4bxvkg51EdjK4Tk2pQDPRZLISQ2jLcgxUAvVe2OrRCSM4SZQ8gZr0m6ZcO+jqUQku9JustKD8FSCM2dwrJSyBF2EFFaVZcWqtpiKYTm1ym20j/HTghNmus8pgp7DiECjpD0CtL0wE6IgQdTCvWtWAkxYIcEfZ5CoD8WCtJAJAxJqZUehJUQC1NTCPTzQrVSiIR9Ugj0ClUXrIRYuCGFUF+FjRALdj7hRzUG2sa2N8dKiIV+UvuCpcOwEWJiTI2hvgMLISZaSrIjhTFpyA0n1dhKn4yFEBtjawj049gHsWEba5dJ9eV3d8NCiI0BNbTS52AfxMjoKgM9SZgKhwhpKsnxbpUGeolqD+yDGOleZSs9BOsgVi6uItD/ErZnQcQ8JZWXDOuIbRArdhbiYmFXOOSIblL5JAujHRA1Z1UQaBsh2QnLIGZsKK9LhV+AD7ENYueZRrbSo7AKssJb0rjSuy2xCrLCpmYSbfiuEzZBlli1iVD/BIsga6xoINB/wR7IIjPLBNpeIDnCAjKHrd3YX7V3vX9/Q9VXkplGgMyxX71+tY107IwtkOWWerbqA1Uv1TjVQEl2hQNkkv8LMACPGRODdZxNTgAAAABJRU5ErkJggg==);
+      }
+
+      .test16 {
+        shape-margin: 10px;
+      }
+
+      .test17 {
+        shape-margin: 50px;
+      }
+
+      .shape4 {
+        float: left;
+        width: 150px;
+        height: 120px;
+        --gradient: linear-gradient(to right bottom, #cd0000, transparent 50%, transparent 90%, #cd0000);
+        shape-outside: var(--gradient);
+        background: var(--gradient);
+      }
+
+      .test18 {
+        shape-image-threshold: 0.5;
+      }
+
+      .iphonex {
+        --iphonex-height: 500px;
+        --liuhai-height: 150px;
+        width: 300px;
+        height: var(--iphonex-height);
+        margin: 20px auto;
+        border: 3px solid #000;
+        overflow: auto;
+        position: relative;
+      }
+
+      .liuhai {
+        float: left;
+        margin-top: calc(var(--iphonex-height) / 2 - var(--liuhai-height) / 2);
+        width: 35px;
+        height: var(--liuhai-height);
+        background-color: rgba(0, 0, 0, 0.6);
+        background-clip: content-box;
+        color: #fff;
+        text-align: center;
+        border: 5px solid transparent;
+        border-left: none;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        shape-outside: border-box;
+        position: relative;
+      }
+
+      .liuhai::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: -20px;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.6);
+        clip-path: url(#iphonexPath1);
+      }
+
+      .liuhai::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -20px;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.6);
+        clip-path: url(#iphonexPath2);
+      }
+
+      .iphonex ul {
+        list-style: none;
+      }
+
+      .iphonex li {
+        border-bottom: 1px solid #aaa;
+        padding: 5px;
+      }
+
+      .round1 {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+        background-color: red;
+        clip-path: url(#iphonexPath1);
+      }
+
+      .round2 {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+        background-color: red;
+        clip-path: url(#iphonexPath2);
+      }
+
+      .round3 {
+        width: 500px;
+        height: 500px;
+        background-color: red;
+        position: relative;
+        margin: 50px;
+        overflow: hidden;
+      }
+
+      .round3::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 1000px;
+        height: 1000px;
+        background-color: #fff;
+        border-bottom-left-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="shape test1"></span>
+      <p class="text">(shape-outside: none;)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape test2"></span>
+      <p class="text">(shape-outside: margin-box;)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape test3"></span>
+      <p class="text">(shape-outside: border-box;)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape test4"></span>
+      <p class="text">(shape-outside: padding-box;)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape test5"></span>
+      <p class="text">(shape-outside: content-box;)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test6"></span>
+      <p class="text">(shape-outside: circle();)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test7"></span>
+      <p class="text">(shape-outside: circle(50% at 0% 50%);)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test8"></span>
+      <p class="text">(shape-outside: circle(50% at 0% 50%);)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test9"></span>
+      <p class="text">(shape-outside: circle(50% at 0% 50%);)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test10"></span>
+      <p class="text">(shape-outside: circle(50% at 0% 50%);)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test11"></span>
+      <p class="text">(shape-outside: inset(10px 20px);)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test12"></span>
+      <p class="text">(shape-outside: inset(10px 20px 30px 10px round 25px);)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test13"></span>
+      <p class="text">(shape-outside: polygon(0px 0px, 0px 40px, 40px 80px);)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape1 test14"></span>
+      <p class="text">(shape-outside: polygon(0px 0px, 80px 0px, 0px 40px, 80px 80px, 0px 80px);)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape2 test15"></span>
+      <p class="text">(shape-outside: shape-outside: url();)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web. Add a width and height and you have the exact size rectangle you need. Add border-radius and you can round that shape, and enough of it you can turn those rectangles into circles and ovals.</p>
+    </div>
+    <div class="box">
+      <span class="shape2 test15 test16"></span>
+      <p class="text">(shape-outside: shape-outside: url();)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web. Add a width and height and you have the exact size rectangle you need. Add border-radius and you can round that shape, and enough of it you can turn those rectangles into circles and ovals.</p>
+    </div>
+    <div class="box">
+      <span class="shape3 test15"></span>
+      <p class="text">(shape-outside: shape-outside: url();)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web. Add a width and height and you have the exact size rectangle you need. Add border-radius and you can round that shape, and enough of it you can turn those rectangles into circles and ovals.</p>
+    </div>
+    <div class="box">
+      <span class="shape3 test15 test17"></span>
+      <p class="text">(shape-outside: shape-outside: url();)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web. Add a width and height and you have the exact size rectangle you need. Add border-radius and you can round that shape, and enough of it you can turn those rectangles into circles and ovals.</p>
+    </div>
+    <div class="box">
+      <span class="shape4"></span>
+      <p class="text">(shape-outside: linear-gradient;)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="box">
+      <span class="shape4 test18"></span>
+      <p class="text">(shape-outside: linear-gradient;)在CSS Shapes布局问世之前，文字像杂志一样的任意形状的排版几乎是不可能的，一直都是用网格、盒子和直线构造。CSS Shapes允许我们定义文本环绕的几何形状。这些形状可以是圆、椭圆、简单或复杂的多边形，甚至是任意的图像和多彩的渐变。CSS is capable of making all sorts of shapes. Squares and rectangles are easy, as they are the natural shapes of the web.</p>
+    </div>
+    <div class="iphonex">
+      <span class="liuhai">写给自己看的</span>
+      <ul>
+        <li>1写给自己看的display: flex布局教程</li>
+        <li>2写给自己看的display: grid布局教程</li>
+        <li>3写给自己看的CSS columns分栏布局教程</li>
+        <li>4写给自己看的CSS shapes布局教程</li>
+        <li>5写给自己看的display: flex布局教程</li>
+        <li>6写给自己看的display: grid布局教程</li>
+        <li>7写给自己看的CSS columns分栏布局教程</li>
+        <li>8写给自己看的CSS shapes布局教程</li>
+        <li>9写给自己看的display: flex布局教程</li>
+        <li>10写给自己看的display: grid布局教程</li>
+        <li>11写给自己看的CSS columns分栏布局教程</li>
+        <li>12写给自己看的CSS shapes布局教程</li>
+        <li>13写给自己看的display: flex布局教程</li>
+        <li>14写给自己看的display: grid布局教程</li>
+        <li>15写给自己看的CSS columns分栏布局教程</li>
+        <li>16写给自己看的CSS shapes布局教程</li>
+        <li>17写给自己看的display: flex布局教程</li>
+        <li>18写给自己看的display: grid布局教程</li>
+        <li>19写给自己看的CSS columns分栏布局教程</li>
+        <li>20写给自己看的CSS shapes布局教程</li>
+      </ul>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: fixed; top: 0; left: 0; z-index: -1; opacity: 0;">
+      <clipPath id="iphonexPath1" clipPathUnits="objectBoundingBox">
+        <path d="M 0 0 L 0 1 L 1 1 Q 0.1 0.9 0 0" />
+      </clipPath>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: fixed; top: 0; left: 0; z-index: -1; opacity: 0;">
+      <clipPath id="iphonexPath2" clipPathUnits="objectBoundingBox">
+        <path d="M 0 1 L 0 0 L 1 0 Q 0.1 0.1 0 1" />
+      </clipPath>
+    </svg>
+    <div class="round1"></div>
+    <div class="round2"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500" height="500">
+      <path d="M 50 50 L 50 400 L 400 400 Q 100 300 50 50" stroke="blue" stroke-width="5" fill="red" />
+    </svg>
+    <div class="round3"></div>
+    <script>
+      const INIT_MARGIN_TOP = Number.parseFloat(getComputedStyle(document.querySelector('.liuhai')).marginTop);
+      document.querySelector('.iphonex').onscroll = function(evt) {
+        const scrollTop = document.querySelector('.iphonex').scrollTop;
+        document.querySelector('.liuhai').style.marginTop = `${scrollTop + INIT_MARGIN_TOP}px`;
+      }
+    </script>
+  </body>
+</html>

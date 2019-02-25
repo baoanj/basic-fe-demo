@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>骨架屏-Loading</title>
+    <style>
+      .PlaceHolder-inner {
+        position: relative;
+        overflow: hidden;
+        background: #f6f6f6;
+      }
+      
+      .List-item {
+        position: relative;
+        padding: 16px 20px;
+      }
+
+      .PlaceHolder-bg {
+        position: absolute;
+        width: 200%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          #f6f6f6 0%,
+          #ebebeb 20%,
+          #f6f6f6 40%,
+          #f6f6f6 100%
+        );
+        animation: linear-double 1s linear 1ms infinite forwards;
+      }
+
+      @keyframes linear-double {
+        0% {
+          transform: translateX(-56%);
+        }
+        100% {
+          transform: translateX(56%);
+        }
+      }
+
+      .PlaceHolder-mask {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+      }
+
+      .PlaceHolder-mask:nth-child(2) {
+        border-right: 100px solid #fff;
+        border-bottom: 20px solid #fff;
+      }
+
+      .PlaceHolder-mask:nth-child(3) {
+        border-right: 200px solid #fff;
+        border-bottom: 20px solid #fff;
+      }
+
+      .PlaceHolder-mask:nth-child(4) {
+        border-right: 50px solid #fff;
+        border-bottom: 20px solid #fff;
+      }
+
+      .PlaceHolder-mask:nth-child(5) {
+        border-right: 150px solid #fff;
+        border-bottom: 20px solid #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="PlaceHolder List-item">
+        <div class="PlaceHolder-inner">
+          <div class="PlaceHolder-bg"></div>
+          <div class="PlaceHolder-mask"></div>
+          <div class="PlaceHolder-mask"></div>
+          <div class="PlaceHolder-mask"></div>
+          <div class="PlaceHolder-mask"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

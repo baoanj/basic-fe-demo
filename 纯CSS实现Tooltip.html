@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>纯CSS实现Tooltip</title>
+    <style>
+      :root {
+        --tooltip-arrow-size: 5px;
+        --tooltip-bg-color: rgba(0, 0, 0, 0.8);
+        --tiiltip-text-color: #fff;
+      }
+      [my-title] {
+        position: relative;
+      }
+      [my-title]::before {
+        content: attr(my-title);
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + var(--tooltip-arrow-size));
+        transform: translateX(-50%);
+        color: var(--tiiltip-text-color);
+        background-color: var(--tooltip-bg-color);
+        padding: 2px 5px;
+        border-radius: 5px;
+        visibility: hidden;
+      }
+      [my-title]::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% - var(--tooltip-arrow-size));
+        transform: translateX(-50%);
+        border: var(--tooltip-arrow-size) solid transparent;
+        border-top-color: var(--tooltip-bg-color);
+        visibility: hidden;
+      }
+      [my-title]:hover::before {
+        visibility: visible;
+      }
+      [my-title]:hover::after {
+        visibility: visible;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="margin: 100px 200px">
+      <span my-title="https://www.jianshu.com/p/ef5a8418d8b5">
+        5行JS自定义title提示效果（Tooltip）
+      </span>
+    </div>
+    <hr>
+    <div style="margin: 100px 200px">
+      <span my-title="Tooltip">
+        5行JS自定义title提示效果（Tooltip）
+      </span>
+    </div>
+  </body>
+</html>

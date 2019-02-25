@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>box-shadow模拟border效果但不占用空间</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    section {
+      padding: 20px;
+      float: left;
+    }
+
+    div {
+      width: 300px;
+      height: 200px;
+      float: left;
+      background-image: linear-gradient(to right bottom, #eee, #555);
+    }
+
+    .border {
+      border: 10px solid rgba(0, 0, 255, 0.3);
+    }
+
+    .boxshadow {
+      box-shadow: 0 0 0 10px rgba(0, 0, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <section>
+      <div class="border"></div>
+      <div></div>
+      <div class="boxshadow"></div>
+  </section>
+</body>
+</html>
