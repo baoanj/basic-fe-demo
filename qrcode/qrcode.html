@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>二维码</title>
+</head>
+
+<body>
+  <input placeholder="回车生成二维码" type="text" onkeyup="generateQRCode(event)">
+  <h2>canvas</h2>
+  <div id="qrcode-canvas"></div>
+  <h2>table</h2>
+  <div id="qrcode-table"></div>
+  <script src="./qrcode.js"></script>
+  <script>
+    function generateQRCode(event) {
+      if (event.keyCode === 13) {
+        document.querySelector('#qrcode-canvas').innerHTML = '';
+        document.querySelector('#qrcode-canvas').appendChild(getQRCode(event.target.value));
+        document.querySelector('#qrcode-table').innerHTML = '';
+        document.querySelector('#qrcode-table').appendChild(getQRCode({
+          render: 'table',
+          text: event.target.value
+        }));
+      }
+    }
+  </script>
+</body>
+
+</html>

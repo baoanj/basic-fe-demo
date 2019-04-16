@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>counter-increment</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        color: #333;
+        font-size: 14px;
+        font-family: 'Segoe UI Web (West European)', Segoe UI, -apple-system,
+          BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        background-color: #f3f2f1;
+      }
+
+      .Container {
+        justify-content: center;
+        padding: 20px 0;
+        max-width: 1040px;
+        margin: 0 auto;
+      }
+
+      .Tiles {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-gap: 20px;
+        display: grid;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        /* Set "steps" to 0 */
+        /* counter-reset: steps; */
+
+        /* Set "steps" to 35 */
+        counter-reset: steps 35;
+      }
+
+      .Tile {
+        background-color: white;
+        border-radius: 2px;
+        box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132),
+          0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
+        opacity: 0.96;
+        transition: all 0.15s linear;
+        position: relative;
+        overflow: hidden;
+        padding: 12px;
+      }
+
+      .Tile--intro {
+        grid-column: span 2;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .Tile--intro h2 {
+        margin: 10px 0;
+      }
+
+      .Tile-links {
+        font-size: 16px;
+        color: #605e5c;
+      }
+
+      .Tile-link {
+        align-items: center;
+        text-align: center;
+        color: #323130;
+        display: flex;
+        flex-direction: column;
+        height: 148px;
+        justify-content: center;
+        text-decoration: none;
+        position: relative;
+        font-size: 24px;
+        font-weight: 200;
+        z-index: 2;
+      }
+
+      a {
+        color: #0078d4;
+        text-decoration: none;
+      }
+
+      a.Tile-link {
+        color: #0078d7;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .Tile.Tile--numbered::after {
+        counter-increment: steps;
+        content: counter(steps);
+        position: absolute;
+        left: -20px;
+        bottom: -3px;
+        font-size: 220px;
+        line-height: 188px;
+        color: #eaeaea;
+        z-index: 1;
+      }
+
+      .counter-1 {
+        /* Set "my-sec-counter" to 0 */
+        counter-reset: my-sec-counter;
+        margin: 20px;
+      }
+
+      .counter-1 h2::before {
+        /* Decrement "my-sec-counter" by 1 */
+        counter-increment: my-sec-counter -1;
+        content: "Section " counter(my-sec-counter) ". ";
+      }
+
+      .counter-2 {
+        /* Set "section" to 0 */
+        counter-reset: section;
+        margin: 20px;
+      }
+
+      .counter-2 h1 {
+        /* Set "subsection" to 0 */
+        counter-reset: subsection;
+      }
+
+      .counter-2 h1::before {
+        counter-increment: section;
+        content: "Section " counter(section) ": ";
+      }
+
+      .counter-2 h2::before {
+        counter-increment: subsection;
+        content: counter(section) "." counter(subsection) " ";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Container">
+      <ul class="Tiles">
+        <li class="Tile Tile--intro">
+          <h2>Day 1</h2>
+          Get set up and learn to build a todo app using HTML, CSS, JavaScript,
+          and React.
+        </li>
+        <li class="Tile Tile--numbered">
+          <a
+            target="_blank"
+            href="https://microsoft.github.io/frontend-bootcamp/step1-01/"
+            class="Tile-link"
+          >
+            HTML/CSS/JS
+          </a>
+        </li>
+        <li class="Tile Tile--numbered">
+          <div class="Tile-link">
+            Todo HTML &amp; CSS
+            <div class="Tile-links">
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-02/demo/"
+              >demo</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-02/exercise/"
+              >exercise</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-02/final/"
+              >final</a>
+            </div>
+          </div>
+        </li>
+        <li class="Tile Tile--numbered">
+          <div class="Tile-link">
+            Todo JS
+            <div class="Tile-links">
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-03/demo/"
+              >demo</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-03/exercise/"
+              >exercise</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-03/final/"
+              >final</a>
+            </div>
+          </div>
+        </li>
+        <li class="Tile Tile--numbered">
+          <div class="Tile-link">
+            React Intro
+            <div class="Tile-links">
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-04/demo/"
+              >demo</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-04/final/"
+              >final</a>
+            </div>
+          </div>
+        </li>
+        <li class="Tile Tile--numbered">
+          <div class="Tile-link">
+            React Components
+            <div class="Tile-links">
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-05/demo/"
+              >demo</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-05/exercise/"
+              >exercise</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-05/final/"
+              >final</a>
+            </div>
+          </div>
+        </li>
+        <li class="Tile Tile--numbered">
+          <div class="Tile-link">
+            State-Driven UI
+            <div class="Tile-links">
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-06/demo/"
+              >demo</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-06/exercise/"
+              >exercise</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-06/final/"
+              >final</a>
+            </div>
+          </div>
+        </li>
+        <li class="Tile Tile--numbered">
+          <div class="Tile-link">
+            Types &amp; <br />UI-Driven State
+            <div class="Tile-links">
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-07/demo/"
+              >demo</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-07/exercise/"
+              >exercise</a>
+              |
+              <a
+                target="_blank"
+                href="https://microsoft.github.io/frontend-bootcamp/step1-07/final/"
+              >final</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="counter-1">
+      <h2>HTML Tutorial</h2>
+      <h2>CSS Tutorial</h2>
+      <h2>JavaScript Tutorial</h2>
+      <h2>Bootstrap Tutorial</h2>
+      <h2>SQL Tutorial</h2>
+      <h2>PHP Tutorial</h2>
+    </div>
+    <div class="counter-2">
+      <h1>HTML and CSS</h1>
+      <h2>HTML Tutorial</h2>
+      <h2>CSS Tutorial</h2>
+      <h2>Bootstrap Tutorial</h2>
+      <hr>
+
+      <h1>JavaScript</h1>
+      <h2>JavaScript Tutorial</h2>
+      <h2>jQuery Tutorial</h2>
+      <h2>JSON Tutorial</h2>
+      <hr>
+
+      <h1>Server Side</h1>
+      <h2>SQL Tutorial</h2>
+      <h2>PHP Tutorial</h2>
+    </div>
+  </body>
+</html>

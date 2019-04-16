@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>createEvent-dispatchEvent and preventDefault example</title>
+</head>
+<body>
+  <div>
+    <h2>createEvent-dispatchEvent and preventDefault example</h2>
+    <h6>This example demonstrates simulating a click on a checkbox using DOM document.createEvent, event.initMouseEvent, and element.dispatchEvent methods, as well as using the event.preventDefault method in an event handler to prevent the default action associated with the event from happening.</h6>
+    <div>
+      <input type="checkbox" id="checkbox"/><label for="checkbox">Checkbox</label>
+      <br>
+      <input type="button" onclick="simulateClick();" value="Simulate click"/> simulateClick();
+      <br>
+      <input type="button" onclick="addHandler();" value="Add a click handler that calls preventDefault"/> addHandler();
+      <br>
+      <input type="button" onclick="removeHandler();" value="Remove the click handler that calls preventDefault"/> removeHandler();
+    </div>
+    <h5>Scripts used</h5>
+    <pre>
+function preventDef(event) {
+  event.preventDefault();
+}
+
+function addHandler() {
+  document.getElementById("checkbox")
+    .addEventListener("click", preventDef, false);
+}
+
+function removeHandler() {
+  document.getElementById("checkbox")
+    .removeEventListener("click", preventDef, false);
+}
+
+function simulateClick() {
+  var evt = document.createEvent("MouseEvents");
+  evt.initMouseEvent("click", true, true, window,
+    0, 0, 0, 0, 0, false, false, false, false, 0, null);
+  var cb = document.getElementById("checkbox"); 
+  var canceled = !cb.dispatchEvent(evt);
+  if(canceled) {
+    // A handler called preventDefault
+    alert("canceled");
+  } else {
+    // None of the handlers called preventDefault
+    alert("not canceled");
+  }
+}
+    </pre>
+  </div>
+  <script>
+    function preventDef(event) {
+      event.preventDefault();
+    }
+
+    function addHandler() {
+      document.getElementById("checkbox")
+        .addEventListener("click", preventDef, false);
+    }
+
+    function removeHandler() {
+      document.getElementById("checkbox")
+        .removeEventListener("click", preventDef, false);
+    }
+
+    function simulateClick() {
+      var evt = document.createEvent("MouseEvents");
+      evt.initMouseEvent("click", true, true, window,
+        0, 0, 0, 0, 0, false, false, false, false, 0, null);
+      var cb = document.getElementById("checkbox"); 
+      var canceled = !cb.dispatchEvent(evt);
+      if(canceled) {
+        // A handler called preventDefault
+        alert("canceled");
+      } else {
+        // None of the handlers called preventDefault
+        alert("not canceled");
+      }
+    }
+  </script>
+</body>
+</html>

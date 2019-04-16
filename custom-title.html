@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 50px;
+    }
+
+    .box1 {
+      width: 2000px;
+      height: 2000px;
+      padding: 100px;
+      border: 5px solid #ccc;
+      overflow: auto;
+    }
+
+    .box2 {
+      width: 4000px;
+      height: 4000px;
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <button onmouseover="event.stopPropagation()" onclick="cancelCallback()">cancel</button>
+    <div class="box2"></div>
+  </div>
+
+  <script>
+    HTMLElement.prototype.customTitle = function(text) {
+      const mouseOver = (e) => {
+        e.stopPropagation();
+        const title = document.createElement('span');
+        title.innerHTML = text;
+        title.style.border = '1px solid #aaa';
+        title.style.position = 'fixed';
+        title.style.zIndex = 9999;
+        document.body.appendChild(title);
+
+        this.addEventListener('mousemove', mouseMove);
+        this.addEventListener('mouseout', mouseOut);
+
+        function mouseMove(event) {
+          event.stopPropagation();
+          title.style.left = `${event.clientX + 12}px`;
+          title.style.top = `${event.clientY + 18}px`;
+        }
+
+        function mouseOut(event) {
+          event.stopPropagation();
+          this.removeEventListener('mousemove', mouseMove);
+          this.removeEventListener('mouseout', mouseOut);
+          document.body.removeChild(title);
+        }
+      };
+
+      this.addEventListener('mouseover', mouseOver);
+      return () => {
+        this.removeEventListener('mouseover', mouseOver);
+      }
+    };
+
+    const cancelCallback = document.querySelector('.box1').customTitle('box1');
+    document.querySelector('.box2').customTitle('box2');
+  </script>
+</body>
+</html>

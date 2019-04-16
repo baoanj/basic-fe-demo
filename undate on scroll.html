@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Update On Scroll</title>
+    <style>
+      .box1 {
+        width: 500px;
+        height: 500px;
+        border: 1px solid #eee;
+        padding: 20px;
+        overflow: auto;
+      }
+
+      .box2 {
+        height: 1000px;
+        background-color: #ccc;
+      }
+
+      .box3 {
+        height: 1000px;
+        margin-top: 20px;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="box2"></div>
+    </div>
+    <div class="box3"></div>
+    <script>
+      // 借鉴自 https://github.com/vaneenige/uos
+      function tick(begin, end, callback, event) {
+        // console.log(event);
+        const scrollTop = this.scrollTop || this.pageYOffset || 0;
+        const scrollHeight = this.scrollHeight || document.body.scrollHeight || 0;
+        const clientHeight = this.clientHeight || this.innerHeight || 0;
+        const distance = end <= 1
+          ? (scrollTop / (scrollHeight - clientHeight) - begin) / (end - begin)
+          : (scrollTop - begin) / (end - begin);
+        callback(distance < 0 ? 0 : distance > 1 ? 1 : distance);
+      }
+
+      function uos(begin, end, func) {
+        /**
+         * function.bind(thisArg[, arg1[, arg2[, ...]]])
+         * 
+         * arg1, arg2, ...
+         *   Arguments to prepend to arguments provided to the bound function
+         *   when invoking the target function.
+         */
+        const handler = tick.bind(this, begin, end, func);
+        this.addEventListener('scroll', handler);
+        return () => {
+          this.removeEventListener('scroll', handler);
+        };
+      }
+    </script>
+    <script>
+      window.onload = () => {
+        const cancel = uos(100, 500, progress => {
+          console.log('****1', +progress.toFixed(2));
+          if (progress > 0.5) cancel();
+        });
+        uos(200, 600, progress => {
+          console.log('****2', +progress.toFixed(2));
+        });
+        const cancelBox = uos.call(document.querySelector('.box1'), 0, 1, progress => {
+          console.log('====1', +progress.toFixed(2));
+          if (progress > 0.5) cancelBox();
+        });
+        uos.call(document.querySelector('.box1'), 0.2, 0.6, progress => {
+          console.log('====2', +progress.toFixed(2));
+        });
+      };
+    </script>
+  </body>
+</html>
